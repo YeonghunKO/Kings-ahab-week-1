@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>아합 왕 시대 이야기 | 열왕기상 16:29–20장</title>
+  <style>
+    :root{
+      --bg:#f7f4ee;
+      --paper:#fffdf8;
+      --ink:#20201d;
+      --muted:#6d6a62;
+      --line:#ded8cc;
+      --accent:#8b5e34;
+      --accent2:#355c4d;
+      --danger:#7e3a36;
+      --gold:#b58942;
+      --shadow:0 10px 30px rgba(55,44,31,.08);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(181,137,66,.08), transparent 32%),
+        linear-gradient(180deg,#fbf8f1 0%,var(--bg) 100%);
+      color:var(--ink);
+      line-height:1.7;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1100px,calc(100% - 32px));margin:0 auto}
+    header{
+      padding:64px 0 30px;
+      position:relative;
+      overflow:hidden;
+    }
+    .eyebrow{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 13px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.65);
+      color:var(--accent2);
+      font-size:14px;
+      font-weight:700;
+    }
+    h1{
+      font-size:clamp(36px,7vw,76px);
+      line-height:1.04;
+      letter-spacing:-.045em;
+      margin:20px 0 18px;
+      max-width:900px;
+    }
+    .lead{
+      font-size:clamp(17px,2.4vw,22px);
+      color:var(--muted);
+      max-width:800px;
+      margin:0;
+    }
+    .hero-grid{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:18px;
+    }
+    .hero-card,.quote-card{
+      border:1px solid var(--line);
+      background:rgba(255,253,248,.88);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px;
+    }
+    .hero-scene{
+      min-height:260px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      align-items:end;
+    }
+    .scene{
+      border-radius:18px;
+      padding:18px 12px;
+      text-align:center;
+      background:#f0ece2;
+      border:1px solid #e5dfd2;
+    }
+    .scene .emoji{font-size:42px;display:block;margin-bottom:8px}
+    .scene b{display:block;font-size:15px}
+    .scene small{color:var(--muted)}
+    .quote-card{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      background:linear-gradient(160deg,#355c4d,#27463a);
+      color:white;
+      border:none;
+    }
+    .quote-card blockquote{
+      margin:0;
+      font-size:24px;
+      line-height:1.45;
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .quote-card span{opacity:.8;font-size:14px}
+    nav{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:blur(16px);
+      background:rgba(247,244,238,.86);
+      border-top:1px solid rgba(222,216,204,.7);
+      border-bottom:1px solid rgba(222,216,204,.7);
+    }
+    .nav-inner{
+      display:flex;
+      gap:10px;
+      overflow:auto;
+      padding:12px 0;
+      scrollbar-width:none;
+    }
+    .nav-inner::-webkit-scrollbar{display:none}
+    .nav-inner a{
+      white-space:nowrap;
+      padding:9px 13px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:#4e4a43;
+      font-size:14px;
+      font-weight:700;
+    }
+    main{padding:42px 0 80px}
+    .timeline{
+      position:relative;
+      margin-top:10px;
+    }
+    .timeline:before{
+      content:"";
+      position:absolute;
+      left:26px;top:10px;bottom:10px;
+      width:2px;background:var(--line);
+    }
+    .chapter{
+      position:relative;
+      padding-left:72px;
+      margin:0 0 30px;
+    }
+    .dot{
+      position:absolute;
+      left:10px;top:4px;
+      width:34px;height:34px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:var(--paper);
+      border:2px solid var(--accent);
+      box-shadow:0 0 0 7px var(--bg);
+      font-size:17px;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+    .chapter-head{
+      display:flex;
+      gap:14px;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:16px;
+    }
+    .chapter-number{
+      color:var(--accent);
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+    h2{
+      margin:2px 0 0;
+      font-size:clamp(24px,3vw,34px);
+      letter-spacing:-.035em;
+      line-height:1.25;
+    }
+    .range{
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:6px 10px;
+      white-space:nowrap;
+      background:#fff;
+    }
+    .story{
+      font-size:17px;
+      color:#383630;
+      margin:0;
+    }
+    .mini-diagram{
+      margin-top:18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      padding:16px;
+      border-radius:16px;
+      background:#f3efe6;
+      border:1px dashed #d6cfbf;
+      font-weight:700;
+    }
+    .mini-diagram .arrow{color:var(--accent);font-weight:900}
+    .truth{
+      margin-top:16px;
+      border-left:4px solid var(--accent2);
+      padding:12px 14px;
+      background:#eef4f1;
+      border-radius:0 14px 14px 0;
+      color:#28483b;
+      font-weight:650;
+    }
+    .contrast{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+    .contrast>div{
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .contrast h3{margin:0 0 6px;font-size:16px}
+    .contrast p{margin:0;color:var(--muted)}
+    .section-title{
+      margin:64px 0 20px;
+      font-size:clamp(28px,4vw,42px);
+      letter-spacing:-.04em;
+    }
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .summary-box{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+    .summary-box .icon{font-size:30px}
+    .summary-box h3{margin:10px 0 6px}
+    .summary-box p{margin:0;color:var(--muted)}
+    .final{
+      margin-top:26px;
+      padding:28px;
+      border-radius:var(--radius);
+      background:#2f443a;
+      color:white;
+    }
+    .final h2{margin-top:0}
+    .final p{margin-bottom:0;font-size:18px;opacity:.94}
+    footer{
+      border-top:1px solid var(--line);
+      padding:28px 0 42px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    @media (max-width:780px){
+      header{padding-top:38px}
+      .hero-grid{grid-template-columns:1fr}
+      .hero-scene{grid-template-columns:1fr 1fr}
+      .chapter{padding-left:54px}
+      .timeline:before{left:17px}
+      .dot{left:0;width:34px;height:34px}
+      .summary-grid,.contrast{grid-template-columns:1fr}
+      .chapter-head{flex-direction:column}
+      .range{align-self:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">📖 열왕기상 16:29–20장</div>
+      <h1>아합 왕 시대,<br>엘리야가 등장하다</h1>
+      <p class="lead">
+        아합과 이세벨의 바알 숭배, 가뭄, 갈멜산의 불, 엘리야의 도망,
+        그리고 아람과의 전쟁까지. 본문에 기록된 사실만 따라 핵심 흐름을 쉽게 정리했습니다.
+      </p>
+
+      <div class="hero-grid">
+        <div class="hero-card">
+          <div class="hero-scene">
+            <div class="scene"><span class="emoji">👑</span><b>아합</b><small>북이스라엘 왕</small></div>
+            <div class="scene"><span class="emoji">👸</span><b>이세벨</b><small>바알 숭배 확산</small></div>
+            <div class="scene"><span class="emoji">🔥</span><b>엘리야</b><small>여호와의 선지자</small></div>
+            <div class="scene"><span class="emoji">🙏</span><b>오바댜</b><small>선지자들을 숨김</small></div>
+          </div>
+        </div>
+        <div class="quote-card">
+          <blockquote>“여호와 그가 하나님이시로다.”</blockquote>
+          <span>열왕기상 18장, 갈멜산에서 백성의 고백</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a href="#s1">아합과 이세벨</a>
+      <a href="#s2">가뭄</a>
+      <a href="#s3">오바댜</a>
+      <a href="#s4">갈멜산</a>
+      <a href="#s5">비</a>
+      <a href="#s6">엘리야의 도망</a>
+      <a href="#s7">엘리사</a>
+      <a href="#s8">아람 전쟁</a>
+      <a href="#summary">전체 요약</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="timeline">
+
+      <section class="chapter" id="s1">
+        <div class="dot">👑</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">01</div>
+              <h2>아합과 이세벨, 바알 숭배가 본격화되다</h2>
+            </div>
+            <div class="range">왕상 16:29–34</div>
+          </div>
+          <p class="story">
+            아합이 북이스라엘 왕이 되었습니다. 성경은 아합이 이전 왕들보다 여호와 보시기에 더 악을 행했다고 평가합니다.
+            그는 시돈 왕의 딸 이세벨과 결혼했고, 사마리아에 바알의 신전과 제단을 세웠습니다.
+          </p>
+          <div class="mini-diagram">
+            <span>👑 아합</span><span class="arrow">+</span><span>👸 이세벨</span>
+            <span class="arrow">→</span><span>바알 숭배</span>
+            <span class="arrow">→</span><span>이스라엘에 우상숭배 확산</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s2">
+        <div class="dot">☀️</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">02</div>
+              <h2>엘리야가 가뭄을 선언하다</h2>
+            </div>
+            <div class="range">왕상 17장</div>
+          </div>
+          <p class="story">
+            엘리야는 아합에게 수년 동안 비와 이슬이 내리지 않을 것이라고 선언합니다.
+            하나님은 엘리야를 그릿 시냇가로 보내시고 까마귀를 통해 먹이십니다.
+            이후 엘리야는 사르밧 과부의 집에 머물며, 밀가루와 기름이 떨어지지 않는 일을 경험합니다.
+            그 과부의 아들이 죽었을 때 엘리야가 하나님께 부르짖자 아이가 다시 살아납니다.
+          </p>
+          <div class="mini-diagram">
+            <span>🌧️ 비</span><span class="arrow">→</span><span>❌ 멈춤</span>
+            <span class="arrow">→</span><span>🌾 가뭄</span>
+            <span class="arrow">→</span><span>🐦 까마귀 공급</span>
+            <span class="arrow">→</span><span>🏠 사르밧 과부</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s3">
+        <div class="dot">🙏</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">03</div>
+              <h2>오바댜가 엘리야를 만나다</h2>
+            </div>
+            <div class="range">왕상 18:1–16</div>
+          </div>
+          <p class="story">
+            가뭄이 심해지자 아합과 왕궁 책임자 오바댜는 말과 노새를 살릴 풀을 찾으러 각각 다른 길로 나갑니다.
+            오바댜는 여호와를 크게 경외하는 사람이었고, 이세벨이 선지자들을 죽이려 할 때
+            선지자 100명을 50명씩 두 동굴에 숨기고 떡과 물로 먹였습니다.
+            오바댜는 길에서 엘리야를 만나고, 엘리야의 요청에 따라 아합에게 그의 위치를 알립니다.
+          </p>
+          <div class="contrast">
+            <div>
+              <h3>🕳️ 동굴 1</h3>
+              <p>선지자 50명</p>
+            </div>
+            <div>
+              <h3>🕳️ 동굴 2</h3>
+              <p>선지자 50명</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s4">
+        <div class="dot">🔥</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">04</div>
+              <h2>갈멜산에서 여호와와 바알의 대결</h2>
+            </div>
+            <div class="range">왕상 18:17–40</div>
+          </div>
+          <p class="story">
+            아합은 엘리야를 만나 “이스라엘을 괴롭게 하는 자”라고 부릅니다.
+            엘리야는 오히려 아합과 그의 집이 여호와의 명령을 버리고 바알을 따른 것이 문제라고 말합니다.
+            갈멜산에서 바알 선지자들과 엘리야가 각각 제물을 준비하고,
+            불로 응답하는 신이 참 하나님이라는 조건으로 대결합니다.
+          </p>
+          <div class="mini-diagram">
+            <span>바알 선지자들</span><span class="arrow">→</span><span>아무 응답 없음</span>
+            <span class="arrow">|</span>
+            <span>엘리야의 기도</span><span class="arrow">→</span><span>🔥 여호와의 불</span>
+          </div>
+          <div class="truth">백성은 엎드려 “여호와 그가 하나님이시로다”라고 고백합니다.</div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s5">
+        <div class="dot">🌧️</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">05</div>
+              <h2>가뭄이 끝나고 큰비가 내리다</h2>
+            </div>
+            <div class="range">왕상 18:41–46</div>
+          </div>
+          <p class="story">
+            엘리야는 아합에게 큰비의 소리가 있다고 말합니다.
+            처음에는 아무것도 보이지 않았지만, 일곱 번째에 바다에서 사람의 손만 한 작은 구름이 올라옵니다.
+            곧 하늘이 어두워지고 큰비가 내립니다.
+          </p>
+          <div class="mini-diagram">
+            <span>☀️</span><span class="arrow">→</span><span>☁️ 작은 구름</span>
+            <span class="arrow">→</span><span>☁️☁️☁️</span>
+            <span class="arrow">→</span><span>🌧️ 큰비</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s6">
+        <div class="dot">😞</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">06</div>
+              <h2>이세벨의 위협과 엘리야의 도망</h2>
+            </div>
+            <div class="range">왕상 19장</div>
+          </div>
+          <p class="story">
+            아합이 갈멜산의 일을 이세벨에게 알리자, 이세벨은 엘리야를 죽이겠다고 위협합니다.
+            엘리야는 도망쳐 광야에서 죽기를 구할 정도로 지칩니다.
+            하나님은 천사를 통해 엘리야를 먹이고 재우신 뒤 호렙산으로 이끄십니다.
+            강한 바람, 지진, 불이 지나간 후 세미한 소리가 들리고,
+            하나님은 엘리야에게 다시 사명을 주십니다.
+          </p>
+          <div class="mini-diagram">
+            <span>🌪️ 바람</span><span class="arrow">→</span>
+            <span>🌎 지진</span><span class="arrow">→</span>
+            <span>🔥 불</span><span class="arrow">→</span>
+            <span>🤫 세미한 소리</span>
+          </div>
+          <div class="truth">하나님은 바알에게 무릎 꿇지 않은 7천 명을 남겨두셨다고 말씀하십니다.</div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s7">
+        <div class="dot">🧥</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">07</div>
+              <h2>엘리사가 부름받다</h2>
+            </div>
+            <div class="range">왕상 19:19–21</div>
+          </div>
+          <p class="story">
+            엘리야는 밭을 갈고 있던 엘리사를 만나 자신의 겉옷을 그에게 던집니다.
+            엘리사는 소를 잡아 사람들에게 먹인 뒤 엘리야를 따라가며 그를 섬깁니다.
+          </p>
+          <div class="mini-diagram">
+            <span>👨‍🌾 엘리사</span><span class="arrow">←</span><span>🧥 엘리야의 겉옷</span>
+            <span class="arrow">→</span><span>엘리야를 따라감</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" id="s8">
+        <div class="dot">⚔️</div>
+        <div class="card">
+          <div class="chapter-head">
+            <div>
+              <div class="chapter-number">08</div>
+              <h2>아람 왕 벤하닷과 두 번의 전쟁</h2>
+            </div>
+            <div class="range">왕상 20장</div>
+          </div>
+          <p class="story">
+            아람 왕 벤하닷은 32명의 왕과 함께 사마리아를 공격합니다.
+            하나님은 선지자를 통해 아합에게 승리를 약속하시고, 이스라엘은 첫 전쟁에서 승리합니다.
+            아람 사람들은 여호와를 “산의 신”으로 여기며 평지에서 다시 싸우면 이길 수 있다고 판단하지만,
+            하나님은 두 번째 전쟁에서도 이스라엘에게 승리를 주십니다.
+          </p>
+          <div class="mini-diagram">
+            <span>⛰️ “산의 신?”</span><span class="arrow">→</span><span>평지 재도전</span>
+            <span class="arrow">→</span><span>또 패배</span>
+          </div>
+          <p class="story" style="margin-top:16px">
+            벤하닷은 목숨을 구하고, 아합은 그와 조약을 맺어 살려 보냅니다.
+            그러나 하나님은 선지자를 통해 아합이 하나님께서 심판하기로 한 사람을 놓아준 일을 책망하십니다.
+            20장은 아합이 근심하고 답답한 마음으로 사마리아로 돌아가는 것으로 끝납니다.
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <h2 class="section-title" id="summary">전체 흐름 한눈에 보기</h2>
+    <div class="summary-grid">
+      <div class="summary-box">
+        <div class="icon">☀️</div>
+        <h3>가뭄</h3>
+        <p>아합 시대의 바알 숭배 속에서 엘리야가 비와 이슬의 중단을 선언합니다.</p>
+      </div>
+      <div class="summary-box">
+        <div class="icon">🔥</div>
+        <h3>갈멜산</h3>
+        <p>여호와께서 불로 응답하시고, 백성은 여호와가 하나님이심을 고백합니다.</p>
+      </div>
+      <div class="summary-box">
+        <div class="icon">🌧️</div>
+        <h3>비의 회복</h3>
+        <p>오랜 가뭄 뒤 다시 큰비가 내립니다.</p>
+      </div>
+      <div class="summary-box">
+        <div class="icon">😞</div>
+        <h3>엘리야의 낙심</h3>
+        <p>이세벨의 위협 이후 엘리야는 도망치고, 하나님은 그를 먹이고 쉬게 하십니다.</p>
+      </div>
+      <div class="summary-box">
+        <div class="icon">🧥</div>
+        <h3>엘리사</h3>
+        <p>엘리야의 후계자로 엘리사가 부름받습니다.</p>
+      </div>
+      <div class="summary-box">
+        <div class="icon">⚔️</div>
+        <h3>아람과의 전쟁</h3>
+        <p>하나님은 아합에게 두 번 승리를 주시지만, 아합은 벤하닷을 살려 보냅니다.</p>
+      </div>
+    </div>
+
+    <div class="final">
+      <h2>핵심</h2>
+      <p>
+        열왕기상 16:29–20장은 아합과 이세벨의 바알 숭배 속에서 엘리야가 등장하고,
+        하나님께서 가뭄·갈멜산·비·전쟁을 통해 반복해서 자신이 여호와이심을 드러내시는 흐름입니다.
+        그러나 아합은 그 많은 사건을 경험하고도 끝까지 온전히 하나님께 돌아오지 않습니다.
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      본 페이지는 열왕기상 16장 29절부터 20장까지의 이야기 흐름을 쉽게 읽을 수 있도록 요약한 학습용 페이지입니다.
+    </div>
+  </footer>
+</body>
+</html>
